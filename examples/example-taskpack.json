@@ -1,0 +1,9 @@
+{
+  "name": "arithmetic-smoke",
+  "version": "1.0",
+  "tasks": [
+    {"id": "add",  "prompt": "What is 19 + 23? Answer with just the number.", "check": {"type": "contains", "value": "42"}},
+    {"id": "mul",  "prompt": "What is 6 times 7? Answer with just the number.", "check": {"type": "contains", "value": "42"}},
+    {"id": "cap",  "prompt": "What is the capital of France? One word.", "check": {"type": "contains", "value": "Paris"}}
+  ]
+}

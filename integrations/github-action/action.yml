@@ -1,0 +1,26 @@
+# SmartLLMCost cost/latency gate — fail a PR if $/successful-task or p95 latency regress.
+name: SmartLLMCost cost gate
+on: [pull_request]
+jobs:
+  bench:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - run: pip install smartllmcost
+      - run: smartllmcost run taskpack.json --preset openai --model gpt-4o -o report.json
+        env: { SMARTBENCH_API_KEY: ${{ secrets.LLM_API_KEY }} }
+      - name: enforce budget
+        run: |
+          python - <<'PY'
+          import json,sys
+          r=json.load(open("report.json"))
+          cps=r["headline"]["cost_per_successful_task"] or 9e9
+          p95=r["latency_ms"]["p95"] or 9e9
+          budget_cost=float("${{ vars.MAX_COST_PER_TASK || '0.05' }}")
+          budget_p95=float("${{ vars.MAX_P95_MS || '20000' }}")
+          bad = cps>budget_cost or p95>budget_p95
+          print(f"$/task={cps} (budget {budget_cost}) p95={p95}ms (budget {budget_p95})")
+          sys.exit(1 if bad else 0)
+          PY

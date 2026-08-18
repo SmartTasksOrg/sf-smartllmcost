@@ -1,0 +1,69 @@
+<!doctype html><html><head><meta charset="utf-8">
+<title>SmartLLMCost — true cost</title>
+<style>
+ body{font-family:-apple-system,Segoe UI,Roboto,sans-serif;margin:0;background:#f6f8fa;color:#1f2328}
+ header{padding:20px 28px;background:#fff;border-bottom:1px solid #d0d7de;display:flex;align-items:center;gap:14px}
+ header .big{width:20px;height:20px;border-radius:50%;background:#cf222e}
+ h1{font-size:18px;margin:0} .sub{color:#656d76;font-size:13px;margin-left:auto}
+ .wrap{padding:22px 28px;max-width:1000px;margin:0 auto}
+ .card{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid #d0d7de;
+        border-radius:10px;padding:14px 16px;margin-bottom:12px}
+ .dot{width:14px;height:14px;border-radius:50%;margin-top:5px;flex:none}
+ .model{font-weight:600;font-size:15px;margin-bottom:6px}
+ .metrics{display:flex;flex-wrap:wrap;gap:16px;font-size:13px;color:#3b4148}
+ .metrics b{color:#1f2328}
+ .warn{margin-top:8px;font-size:12px;color:#9a6700}
+ footer{padding:16px 28px;color:#8b949e;font-size:12px;text-align:center}
+</style></head><body>
+<header><div class="big"></div><h1>SmartLLMCost — true cost</h1>
+ <span class="sub">budget: ≤ $0.001/task · ≥ 90% success · ranked cheapest-per-success first</span>
+</header>
+<div class="wrap">
+        <div class="card" style="border-left:8px solid #1a7f37;background:#e6f4ea">
+          <div class="dot" style="background:#1a7f37"></div>
+          <div class="body">
+            <div class="model">openai:gpt-4o</div>
+            <div class="metrics">
+              <span><b>$0.000075</b> / successful task</span>
+              <span>success <b>100%</b></span>
+              <span>p95 <b>0.0 ms</b></span>
+              <span>TTFT p50 <b>None ms</b></span>
+              <span>tok/s <b>5054589.55</b></span>
+              <span>tasks <b>5</b></span>
+            </div>
+            
+          </div>
+        </div>
+        <div class="card" style="border-left:8px solid #bf8700;background:#fff8e1">
+          <div class="dot" style="background:#bf8700"></div>
+          <div class="body">
+            <div class="model">anthropic:claude-sonnet</div>
+            <div class="metrics">
+              <span><b>$0.004530</b> / successful task</span>
+              <span>success <b>100%</b></span>
+              <span>p95 <b>0.0 ms</b></span>
+              <span>TTFT p50 <b>None ms</b></span>
+              <span>tok/s <b>679655638.52</b></span>
+              <span>tasks <b>5</b></span>
+            </div>
+            
+          </div>
+        </div>
+        <div class="card" style="border-left:8px solid #cf222e;background:#ffebe9">
+          <div class="dot" style="background:#cf222e"></div>
+          <div class="body">
+            <div class="model">local:tiny</div>
+            <div class="metrics">
+              <span><b>n/a</b> / successful task</span>
+              <span>success <b>0%</b></span>
+              <span>p95 <b>0.0 ms</b></span>
+              <span>TTFT p50 <b>None ms</b></span>
+              <span>tok/s <b>12106537.51</b></span>
+              <span>tasks <b>5</b></span>
+            </div>
+            <div class='warn'>⚠ all attempts cost $0 — check pricing snapshot covers this model_id.</div>
+          </div>
+        </div></div>
+<footer>Green = within budget · Amber = over budget or low success · Red = failing / unreliable.
+ Estimates only — see the run warnings and methodology.</footer>
+</body></html>

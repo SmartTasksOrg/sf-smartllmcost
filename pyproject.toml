@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "smartllmcost"
+version = "0.1.0"
+description = "Apples-to-apples LLM cost & performance benchmark — cost per successful task, reproducible."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "Apache-2.0" }
+authors = [{ name = "SmartTasks" }]
+keywords = ["llm", "benchmark", "cost", "latency", "true-cost", "evaluation", "finops"]
+classifiers = ["Programming Language :: Python :: 3", "License :: OSI Approved :: Apache Software License"]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[project.scripts]
+smartllmcost = "smartllmcost.cli:_entry"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+smartllmcost = ["py.typed"]
