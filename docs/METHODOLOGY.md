@@ -21,6 +21,6 @@
 - Default pricing in the repo is ILLUSTRATIVE; publish numbers only against a current snapshot.
 
 ## Dashboard
-`smartllmcost dashboard *.json --max-cost 0.05 --min-success 0.9` renders a traffic-light
+`sf-smartllmcost dashboard *.json --max-cost 0.05 --min-success 0.9` renders a traffic-light
 view: **green** within budget, **amber** over budget or low success, **red** failing/unreliable.
 Runs are ranked cheapest-per-successful-task first, and per-run warnings surface on the card.

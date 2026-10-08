@@ -4,9 +4,9 @@ import json
 
 
 def smartllmcost_run(taskpack_path, preset="openai", model="gpt-4o", host="", api_key=""):
-    from smartllmcost.config import resolve_adapter
-    from smartllmcost.harness import run_taskpack
-    from smartllmcost.report import build_report
+    from sf_smartllmcost.config import resolve_adapter
+    from sf_smartllmcost.harness import run_taskpack
+    from sf_smartllmcost.report import build_report
     adapter = resolve_adapter(preset, model, host=host, api_key=api_key)
     return build_report(run_taskpack(taskpack_path, adapter))
 

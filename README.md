@@ -15,24 +15,24 @@ measures time and tokens the same way for every model and pairs cost with succes
 SmartLLMCost is not published on PyPI yet; a package of that name on any registry is not ours.
 
 ```bash
-git clone https://github.com/SmartTasksOrg/smartllmcost
-cd smartllmcost
+git clone https://github.com/SmartTasksOrg/sf-smartllmcost
+cd sf-smartllmcost
 python -m venv .venv && . .venv/bin/activate   # Windows PowerShell: .\.venv\Scripts\Activate.ps1
 python -m pip install .
 # run your own task-pack against a model
-smartllmcost run examples/example-taskpack.json --preset openai --model gpt-4o --stream -o report.json  # --stream measures real TTFT
+sf-smartllmcost run examples/example-taskpack.json --preset openai --model gpt-4o --stream -o report.json  # --stream measures real TTFT
 # self-hosted (LM Studio / vLLM / Ollama / llama.cpp)
-smartllmcost run taskpack.json --preset lmstudio --model gpt-oss --host 192.168.1.10 --port 1234 \
+sf-smartllmcost run taskpack.json --preset lmstudio --model gpt-oss --host 192.168.1.10 --port 1234 \
   --self-hosted-gpu-hour 0.96 -o local.json
 # check a task-pack before a long run; list providers
-smartllmcost validate taskpack.json
-smartllmcost presets
+sf-smartllmcost validate taskpack.json
+sf-smartllmcost presets
 # compare several runs, cheapest-$/success first
-smartllmcost compare report.json local.json --format table
+sf-smartllmcost compare report.json local.json --format table
 # build a traffic-light dashboard from run reports
-smartllmcost dashboard report.json local.json --max-cost 0.05 -o dashboard.html
+sf-smartllmcost dashboard report.json local.json --max-cost 0.05 -o dashboard.html
 # build a defensible $/GPU-hour for self-hosted cost
-smartllmcost gpu-hour --capex 20000 --watts 700 --pue 1.5 --kwh-price 0.12
+sf-smartllmcost gpu-hour --capex 20000 --watts 700 --pue 1.5 --kwh-price 0.12
 ```
 
 ## What it measures
@@ -41,7 +41,7 @@ output tokens/sec · throughput · native input/output tokens · failure breakdo
 (budget-exhaustion vs wrong-answer vs harness-error).
 
 ## Structure
-- `src/smartllmcost/` — measurement core, pricing, provider adapters, harness runner, CLI.
+- `src/sf_smartllmcost/` — measurement core, pricing, provider adapters, harness runner, CLI.
 - `ports/` — Node + Go reimplementations of the core (identical results).
 - `integrations/` — an example GitHub Actions workflow (`integrations/github-action/cost-gate.example.yml`), langchain/n8n/flowise, Prometheus export.
 - `examples/` — a runnable task-pack.
