@@ -12,8 +12,13 @@ reported inconsistently, and a cheap model that fails a task isn't cheap. SmartL
 measures time and tokens the same way for every model and pairs cost with success.
 
 ## Quickstart
+SmartLLMCost is not published on PyPI yet; a package of that name on any registry is not ours.
+
 ```bash
-pip install smartllmcost
+git clone https://github.com/SmartTasksOrg/smartllmcost
+cd smartllmcost
+python -m venv .venv && . .venv/bin/activate   # Windows PowerShell: .\.venv\Scripts\Activate.ps1
+python -m pip install .
 # run your own task-pack against a model
 smartllmcost run examples/example-taskpack.json --preset openai --model gpt-4o --stream -o report.json  # --stream measures real TTFT
 # self-hosted (LM Studio / vLLM / Ollama / llama.cpp)
@@ -38,7 +43,7 @@ output tokens/sec · throughput · native input/output tokens · failure breakdo
 ## Structure
 - `src/smartllmcost/` — measurement core, pricing, provider adapters, harness runner, CLI.
 - `ports/` — Node + Go reimplementations of the core (identical results).
-- `integrations/` — GitHub Action cost gate, langchain/n8n/flowise, Prometheus export.
+- `integrations/` — an example GitHub Actions workflow (`integrations/github-action/cost-gate.example.yml`), langchain/n8n/flowise, Prometheus export.
 - `examples/` — a runnable task-pack.
 - Docs: `docs/METHODOLOGY.md`.
 

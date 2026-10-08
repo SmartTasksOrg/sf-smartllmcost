@@ -8,9 +8,14 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.11" }
-      - run: pip install smartllmcost
+      # Install SmartLLMCost from its repository at a fixed commit, never by name:
+      # "smartllmcost" is not published on PyPI by the maintainers yet. The next
+      # step gives your API key to the program installed here, so pin it.
+      # pinned to a commit: smartllmcost is not on PyPI yet; replace with a release tag
+      - run: python -m pip install "git+https://github.com/SmartTasksOrg/smartllmcost@98112892ca8f7ea8c077f13a04605674672fef7d"
       - run: smartllmcost run taskpack.json --preset openai --model gpt-4o -o report.json
-        env: { SMARTBENCH_API_KEY: ${{ secrets.LLM_API_KEY }} }
+        env:
+          SMARTBENCH_API_KEY: ${{ secrets.LLM_API_KEY }}
       - name: enforce budget
         run: |
           python - <<'PY'
