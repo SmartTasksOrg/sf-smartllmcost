@@ -1,4 +1,4 @@
-from smartllmcost.metrics import (percentile, latency_summary, cost_per_successful_task,
+from sf_smartllmcost.metrics import (percentile, latency_summary, cost_per_successful_task,
                                 throughput, tokens_per_sec, failure_breakdown, classify_failure)
 
 

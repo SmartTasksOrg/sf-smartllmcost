@@ -1,3 +1,3 @@
-module smartllmcost
+module sf-smartllmcost
 
 go 1.21

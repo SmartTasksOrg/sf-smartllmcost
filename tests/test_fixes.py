@@ -1,10 +1,10 @@
 """Regression tests for the devil's-advocate review fixes."""
 import pytest
-from smartllmcost.config import resolve_adapter
-from smartllmcost.harness import run_taskpack
-from smartllmcost.harness.taskpack import validate_taskpack
-from smartllmcost.report import build_report
-from smartllmcost.pricing import amortized_gpu_hour
+from sf_smartllmcost.config import resolve_adapter
+from sf_smartllmcost.harness import run_taskpack
+from sf_smartllmcost.harness.taskpack import validate_taskpack
+from sf_smartllmcost.report import build_report
+from sf_smartllmcost.pricing import amortized_gpu_hour
 
 
 def _adapter(resp, model_id="openai:gpt-4o"):
