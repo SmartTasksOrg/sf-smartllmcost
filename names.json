@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "repo": "SmartTasksOrg/smartllmcost",
+  "checked_on": "2026-10-08",
+  "names": [
+    {
+      "registry": "pypi",
+      "name": "smartllmcost",
+      "registered": false,
+      "workflow": "release.yml",
+      "note": "first release pending; README in state A"
+    },
+    {
+      "registry": "go",
+      "name": "github.com/SmartTasksOrg/smartllmcost/ports/go",
+      "registered": false
+    }
+  ],
+  "third_party": {
+    "pypi": [
+      "pip",
+      "pytest",
+      "build"
+    ],
+    "npm": []
+  },
+  "local_images": [],
+  "git_owners": [
+    "SmartTasksOrg"
+  ],
+  "exclude_paths": []
+}
