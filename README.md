@@ -11,14 +11,36 @@ Per-token price doesn't predict the bill (tokenizers differ per model), latency 
 reported inconsistently, and a cheap model that fails a task isn't cheap. SmartLLMCost
 measures time and tokens the same way for every model and pairs cost with success.
 
-## Quickstart
-SmartLLMCost is not published on PyPI yet; a package of that name on any registry is not ours.
+## Install
+
+SmartLLMCost is not published on PyPI or any other package registry yet. Until
+this section says otherwise, a package called `sf-smartllmcost` on any registry
+is not ours, and neither is `smartllmcost`.
+
+Install from a clone (Python 3.9 or later):
 
 ```bash
 git clone https://github.com/SmartTasksOrg/sf-smartllmcost
 cd sf-smartllmcost
-python -m venv .venv && . .venv/bin/activate   # Windows PowerShell: .\.venv\Scripts\Activate.ps1
+python -m venv .venv
+. .venv/bin/activate          # Windows PowerShell: .\.venv\Scripts\Activate.ps1
 python -m pip install .
+sf-smartllmcost presets
+```
+
+## Status
+
+- **Version 0.1.0, experimental.** A command-line benchmark that measures cost per successful task across LLM providers, with 31 unit tests.
+- **Published:** nowhere yet; install from a clone (above).
+- **Tested:** the 31 tests in `tests/` on Python 3.12, Linux, on every push to master and every pull request (`.github/workflows/ci.yml`). The tests make no calls to provider APIs.
+- **Not tested:** Windows and macOS; the provider adapters against live provider APIs; Python versions other than 3.12.
+- **Ports:** The Go port in `ports/go` has its own tests (`go test ./...`, run by hand, not in CI); the other ports in `ports/` have no automated check against the Python reference. None is published on a registry.
+- **Security review:** none independent. Report vulnerabilities as described in [SECURITY.md](SECURITY.md).
+
+## Quickstart
+After installing (above):
+
+```bash
 # run your own task-pack against a model
 sf-smartllmcost run examples/example-taskpack.json --preset openai --model gpt-4o --stream -o report.json  # --stream measures real TTFT
 # self-hosted (LM Studio / vLLM / Ollama / llama.cpp)
