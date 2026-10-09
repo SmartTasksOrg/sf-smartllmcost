@@ -11,28 +11,50 @@ Per-token price doesn't predict the bill (tokenizers differ per model), latency 
 reported inconsistently, and a cheap model that fails a task isn't cheap. SmartLLMCost
 measures time and tokens the same way for every model and pairs cost with success.
 
-## Quickstart
-SmartLLMCost is not published on PyPI yet; a package of that name on any registry is not ours.
+## Install
+
+SmartLLMCost is not published on PyPI or any other package registry yet. Until
+this section says otherwise, a package called `sf-smartllmcost` on any registry
+is not ours, and neither is `smartllmcost`.
+
+Install from a clone (Python 3.9 or later):
 
 ```bash
-git clone https://github.com/SmartTasksOrg/smartllmcost
-cd smartllmcost
-python -m venv .venv && . .venv/bin/activate   # Windows PowerShell: .\.venv\Scripts\Activate.ps1
+git clone https://github.com/SmartTasksOrg/sf-smartllmcost
+cd sf-smartllmcost
+python -m venv .venv
+. .venv/bin/activate          # Windows PowerShell: .\.venv\Scripts\Activate.ps1
 python -m pip install .
+sf-smartllmcost presets
+```
+
+## Status
+
+- **Version 0.1.0, experimental.** A command-line benchmark that measures cost per successful task across LLM providers, with 31 unit tests.
+- **Published:** nowhere yet; install from a clone (above).
+- **Tested:** the 31 tests in `tests/` on Python 3.12, Linux, on every push to master and every pull request (`.github/workflows/ci.yml`). The tests make no calls to provider APIs.
+- **Not tested:** Windows and macOS; the provider adapters against live provider APIs; Python versions other than 3.12.
+- **Ports:** The Go port in `ports/go` has its own tests (`go test ./...`, run by hand, not in CI); the other ports in `ports/` have no automated check against the Python reference. None is published on a registry.
+- **Security review:** none independent. Report vulnerabilities as described in [SECURITY.md](SECURITY.md).
+
+## Quickstart
+After installing (above):
+
+```bash
 # run your own task-pack against a model
-smartllmcost run examples/example-taskpack.json --preset openai --model gpt-4o --stream -o report.json  # --stream measures real TTFT
+sf-smartllmcost run examples/example-taskpack.json --preset openai --model gpt-4o --stream -o report.json  # --stream measures real TTFT
 # self-hosted (LM Studio / vLLM / Ollama / llama.cpp)
-smartllmcost run taskpack.json --preset lmstudio --model gpt-oss --host 192.168.1.10 --port 1234 \
+sf-smartllmcost run taskpack.json --preset lmstudio --model gpt-oss --host 192.168.1.10 --port 1234 \
   --self-hosted-gpu-hour 0.96 -o local.json
 # check a task-pack before a long run; list providers
-smartllmcost validate taskpack.json
-smartllmcost presets
+sf-smartllmcost validate taskpack.json
+sf-smartllmcost presets
 # compare several runs, cheapest-$/success first
-smartllmcost compare report.json local.json --format table
+sf-smartllmcost compare report.json local.json --format table
 # build a traffic-light dashboard from run reports
-smartllmcost dashboard report.json local.json --max-cost 0.05 -o dashboard.html
+sf-smartllmcost dashboard report.json local.json --max-cost 0.05 -o dashboard.html
 # build a defensible $/GPU-hour for self-hosted cost
-smartllmcost gpu-hour --capex 20000 --watts 700 --pue 1.5 --kwh-price 0.12
+sf-smartllmcost gpu-hour --capex 20000 --watts 700 --pue 1.5 --kwh-price 0.12
 ```
 
 ## What it measures
@@ -41,7 +63,7 @@ output tokens/sec · throughput · native input/output tokens · failure breakdo
 (budget-exhaustion vs wrong-answer vs harness-error).
 
 ## Structure
-- `src/smartllmcost/` — measurement core, pricing, provider adapters, harness runner, CLI.
+- `src/sf_smartllmcost/` — measurement core, pricing, provider adapters, harness runner, CLI.
 - `ports/` — Node + Go reimplementations of the core (identical results).
 - `integrations/` — an example GitHub Actions workflow (`integrations/github-action/cost-gate.example.yml`), langchain/n8n/flowise, Prometheus export.
 - `examples/` — a runnable task-pack.

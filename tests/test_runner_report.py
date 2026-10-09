@@ -1,7 +1,7 @@
-from smartllmcost.config import resolve_adapter
-from smartllmcost.harness import run_taskpack
-from smartllmcost.report import build_report, compare
-from smartllmcost.formats import to_csv, to_prometheus, to_json
+from sf_smartllmcost.config import resolve_adapter
+from sf_smartllmcost.harness import run_taskpack
+from sf_smartllmcost.report import build_report, compare
+from sf_smartllmcost.formats import to_csv, to_prometheus, to_json
 
 
 def _adapter(answer, in_tok=10, out_tok=5, model_id="openai:gpt-4o"):

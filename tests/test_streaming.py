@@ -1,8 +1,8 @@
 """Streaming path: real TTFT capture + generation-only timing."""
 import time
-from smartllmcost.config import resolve_adapter
-from smartllmcost.harness import run_taskpack
-from smartllmcost.report import build_report
+from sf_smartllmcost.config import resolve_adapter
+from sf_smartllmcost.harness import run_taskpack
+from sf_smartllmcost.report import build_report
 
 
 def _fake_stream(delay_first=0.03):

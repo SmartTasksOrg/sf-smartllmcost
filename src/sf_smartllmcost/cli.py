@@ -1,4 +1,4 @@
-"""smartllmcost CLI — run a task-pack against one or more models and emit a true-cost report."""
+"""sf-smartllmcost CLI — run a task-pack against one or more models and emit a true-cost report."""
 from __future__ import annotations
 import argparse
 import json
@@ -26,8 +26,8 @@ def _add_model_args(p):
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(prog="smartllmcost")
-    ap.add_argument("--version", action="version", version=f"smartllmcost {__version__}")
+    ap = argparse.ArgumentParser(prog="sf-smartllmcost")
+    ap.add_argument("--version", action="version", version=f"sf-smartllmcost {__version__}")
     sub = ap.add_subparsers(dest="cmd", required=True)
 
     r = sub.add_parser("run", help="run a task-pack against a model")
