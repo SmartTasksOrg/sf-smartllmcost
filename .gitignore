@@ -1,6 +1,33 @@
 .env
 .secure/
 .venv-iaiso/
-.env
-.secure/
-.venv-iaiso/
+
+# build output
+dist/
+build/
+*.egg-info/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# secrets and credentials never belong in the repository
+.secret/
+secrets.env
+*.env
+.env.*
+!.env.example
+.npmrc
+.pypirc
+.netrc
+_netrc
+id_rsa*
+id_ed25519*
+*.key
+*.pem
+*.p12
+*.pfx
+
+# binary from `go build` in ports/go (the module path ends in /go)
+ports/go/go

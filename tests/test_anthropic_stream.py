@@ -1,6 +1,6 @@
 """Anthropic streaming: named-event SSE, TTFT, split usage."""
 import time
-from smartllmcost.config import resolve_adapter
+from sf_smartllmcost.config import resolve_adapter
 
 
 def _fake(path, body):

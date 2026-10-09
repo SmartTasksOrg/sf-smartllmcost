@@ -31,7 +31,7 @@ now fixed with a regression test (`tests/test_fixes.py`).
 ## Feature completeness
 | ID | Finding | Fix |
 |----|---------|-----|
-| **F-03** | No way to check a task-pack before a long run; no way to see providers. | `smartllmcost validate <taskpack>` and `smartllmcost presets`. |
+| **F-03** | No way to check a task-pack before a long run; no way to see providers. | `sf-smartllmcost validate <taskpack>` and `sf-smartllmcost presets`. |
 | **F-04** | Spec promises TTFT but the report never summarized it. | `ttft_ms` percentile block added (populated when the transport streams; null otherwise, documented). |
 | **CQ** | Task-pack structure was never validated (bad JSON shape → obscure crash). | `validate_taskpack` checks tasks list, prompts, check types, duplicate ids. |
 

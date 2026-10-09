@@ -1,4 +1,4 @@
-from smartllmcost.pricing import token_cost, amortized_gpu_hour, self_hosted_cost, DEFAULT_SNAPSHOT
+from sf_smartllmcost.pricing import token_cost, amortized_gpu_hour, self_hosted_cost, DEFAULT_SNAPSHOT
 
 
 def test_token_cost_uses_native_rates():

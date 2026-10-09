@@ -9,7 +9,7 @@ and `percentile([1,2,3,4], 50) = 2.5`.
 
 | Port | Status | How to test |
 |------|--------|-------------|
-| Python (`src/smartllmcost`) | ✅ reference, verified | `pytest` |
+| Python (`src/sf_smartllmcost`) | ✅ reference, verified | `pytest` |
 | Node (`ports/node`) | ✅ verified here | `node --test` |
 | C (`ports/c`) | ✅ compiled + run here | `make test` (gcc) |
 | C++ (`ports/cpp`) | ✅ compiled + run here | `make test` (g++ -std=c++17) |
