@@ -10,11 +10,10 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7.0.0, read 2026-10-08
         with: { python-version: "3.11" }
-      # Install SmartLLMCost from its repository at a fixed commit, never by name:
-      # "sf-smartllmcost" is not published on PyPI by the maintainers yet. The next
-      # step gives your API key to the program installed here, so pin it.
-      # pinned to the release tag v0.1.0 (it exists after the first release); sf-smartllmcost is not on PyPI yet
-      - run: python -m pip install "git+https://github.com/SmartTasksOrg/sf-smartllmcost@v0.1.0"
+      # The next step gives your API key to the program installed here, so pin the exact
+      # version you reviewed. sf-smartllmcost is published only by SmartTasksOrg/sf-smartllmcost
+      # with provenance; a package called "smartllmcost" (without sf-) is not ours.
+      - run: python -m pip install "sf-smartllmcost==0.1.0"
       - run: sf-smartllmcost run taskpack.json --preset openai --model gpt-4o -o report.json
         env:
           SMARTBENCH_API_KEY: ${{ secrets.LLM_API_KEY }}
