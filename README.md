@@ -13,11 +13,23 @@ measures time and tokens the same way for every model and pairs cost with succes
 
 ## Install
 
-SmartLLMCost is not published on PyPI or any other package registry yet. Until
-this section says otherwise, a package called `sf-smartllmcost` on any registry
-is not ours, and neither is `smartllmcost`.
+```bash
+python -m pip install sf-smartllmcost
+sf-smartllmcost presets
+```
 
-Install from a clone (Python 3.9 or later):
+Every file of `sf-smartllmcost` on PyPI is built and published by this repository's release
+workflow (`.github/workflows/release.yml`, PyPI trusted publishing) and carries a
+provenance attestation that names this repository and that workflow; PyPI shows
+it under "Verified details". The same workflow records a GitHub attestation for
+the same files, which you can check with
+`gh attestation verify <file> --repo SmartTasksOrg/sf-smartllmcost`. A release file without
+that provenance is not ours, and neither is a package called `smartllmcost` (without
+`sf-`) on any registry.
+
+Version 0.1.0 (published 2026-10-09) is the first release under this name.
+
+To install from a clone instead (Python 3.9 or later):
 
 ```bash
 git clone https://github.com/SmartTasksOrg/sf-smartllmcost
@@ -31,7 +43,7 @@ sf-smartllmcost presets
 ## Status
 
 - **Version 0.1.0, experimental.** A command-line benchmark that measures cost per successful task across LLM providers, with 31 unit tests.
-- **Published:** nowhere yet; install from a clone (above).
+- **Published:** PyPI `sf-smartllmcost` (see Install). Nothing else is published.
 - **Tested:** the 31 tests in `tests/` on Python 3.12, Linux, on every push to master and every pull request (`.github/workflows/ci.yml`). The tests make no calls to provider APIs.
 - **Not tested:** Windows and macOS; the provider adapters against live provider APIs; Python versions other than 3.12.
 - **Ports:** The Go port in `ports/go` has its own tests (`go test ./...`, run by hand, not in CI); the other ports in `ports/` have no automated check against the Python reference. None is published on a registry.
